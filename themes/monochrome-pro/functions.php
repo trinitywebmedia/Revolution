@@ -28,6 +28,7 @@ function monochrome_localization_setup() {
 
 }
 
+
 // Adds the theme helper functions.
 require_once get_stylesheet_directory() . '/lib/helper-functions.php';
 
@@ -84,7 +85,7 @@ add_action( 'wp_enqueue_scripts', 'monochrome_enqueue_scripts_styles' );
  */
 function monochrome_enqueue_scripts_styles() {
 
-	wp_enqueue_style( 'monochrome-fonts', '//fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;700;800&display=swap', [], genesis_get_theme_version() );
+	wp_enqueue_style( 'monochrome-fonts', '//fonts.googleapis.com/css2?family=Nunito+Sans:wght@800&family=Open+Sans:wght@300;400;700;800&display=swap', [], genesis_get_theme_version() );
 	wp_enqueue_style( 'monochrome-ionicons', '//unpkg.com/ionicons@4.1.2/dist/css/ionicons.min.css', [], genesis_get_theme_version() );
 
 	wp_enqueue_script( 'monochrome-global-script', get_stylesheet_directory_uri() . '/js/global.js', [ 'jquery' ], '1.0.0', true );

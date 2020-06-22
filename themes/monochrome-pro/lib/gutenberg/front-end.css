@@ -61,7 +61,7 @@
 
 	.narrow-content h1,
 	.narrow-content p {
-		padding-right: 60%;
+		padding-right: 20%;
 	}
 
 }
@@ -436,7 +436,7 @@ hr.wp-block-separator {
 }
 
 .wp-block-separator:not(.is-style-wide):not(.is-style-dots) {
-	max-width: 3.5%;
+	max-width: 25%;
 }
 
 .wp-block-audio audio {
