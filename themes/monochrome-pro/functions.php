@@ -87,6 +87,7 @@ function monochrome_enqueue_scripts_styles() {
 
 	wp_enqueue_style( 'monochrome-fonts', '//fonts.googleapis.com/css2?family=Nunito+Sans:wght@800&family=Open+Sans:wght@300;400;700;800&display=swap', [], genesis_get_theme_version() );
 	wp_enqueue_style( 'monochrome-ionicons', '//unpkg.com/ionicons@4.1.2/dist/css/ionicons.min.css', [], genesis_get_theme_version() );
+	
 
 	wp_enqueue_script( 'monochrome-global-script', get_stylesheet_directory_uri() . '/js/global.js', [ 'jquery' ], '1.0.0', true );
 	wp_enqueue_script( 'monochrome-block-effects', get_stylesheet_directory_uri() . '/js/block-effects.js', [], '1.0.0', true );
@@ -331,3 +332,36 @@ genesis_register_sidebar(
 		'description' => __( 'This is the before footer CTA section.', 'monochrome-pro' ),
 	]
 );
+
+/** Register Utility Bar Widget Areas. */
+genesis_register_sidebar( array(
+ 'id' => 'utility-bar-left',
+ 'name' => __( 'Utility Bar Left', 'theme-prefix' ),
+ 'description' => __( 'This is the left utility bar above the header.', 'theme-prefix' ),
+) );
+genesis_register_sidebar( array(
+ 'id' => 'utility-bar-right',
+ 'name' => __( 'Utility Bar Right', 'theme-prefix' ),
+ 'description' => __( 'This is the right utility bar above the header.', 'theme-prefix' ),
+) );
+
+add_action( 'genesis_before_header', 'utility_bar' );
+/**
+* Add utility bar above header.
+*
+* @author Carrie Dils
+* @copyright Copyright (c) 2013, Carrie Dils
+* @license GPL-2.0+
+*/
+function utility_bar() {
+ echo '<div class="utility-bar"><div class="wrap">';
+ genesis_widget_area( 'utility-bar-left', array(
+ 'before' => '<div class="utility-bar-left">',
+ 'after' => '</div>',
+ ) );
+ genesis_widget_area( 'utility-bar-right', array(
+ 'before' => '<div class="utility-bar-right">',
+ 'after' => '</div>',
+ ) );
+ echo '</div></div>';
+}

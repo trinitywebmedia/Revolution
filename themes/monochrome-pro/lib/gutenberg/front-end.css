@@ -395,13 +395,24 @@
 /* Atomic Blocks
 ---------------------------------------------------------------------------- */
 
-.ab-block-container h3,
+
 .ab-block-post-grid .ab-post-grid-items .ab-block-post-grid-title {
 	font-size: 16px;
 	font-weight: 500;
 	letter-spacing: -0.5px;
 	margin-bottom: 10px;
 	text-transform: uppercase;
+}
+
+.ab-block-container h3 {
+	font-size: 24px;
+	font-weight: 500;
+	letter-spacing: -0.5px;
+	margin-bottom: auto;
+	text-transform: uppercase;
+	font-family: futura-pt, sans-serif;
+	font-weight: 500;
+	font-style: normal;
 }
 
 .ab-block-post-grid .ab-post-grid-items .ab-block-post-grid-title {
