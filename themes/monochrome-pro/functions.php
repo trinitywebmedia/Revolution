@@ -324,44 +324,43 @@ function monochrome_custom_footer_logo() {
 
 }
 
-// Registers widget areas.
-genesis_register_sidebar(
-	[
-		'id'          => 'before-footer-cta',
-		'name'        => __( 'Before Footer CTA', 'monochrome-pro' ),
-		'description' => __( 'This is the before footer CTA section.', 'monochrome-pro' ),
-	]
-);
 
-/** Register Utility Bar Widget Areas. */
+
+//* Register widget areas
 genesis_register_sidebar( array(
- 'id' => 'utility-bar-left',
- 'name' => __( 'Utility Bar Left', 'theme-prefix' ),
- 'description' => __( 'This is the left utility bar above the header.', 'theme-prefix' ),
-) );
-genesis_register_sidebar( array(
- 'id' => 'utility-bar-right',
- 'name' => __( 'Utility Bar Right', 'theme-prefix' ),
- 'description' => __( 'This is the right utility bar above the header.', 'theme-prefix' ),
+	'id'          => 'before-header',
+	'name'        => __( 'Before Header', 'monochrome-pro' ),
+	'description' => __( 'Before Header Widget Area Site Wide', 'monochrome-pro' ),
 ) );
 
-add_action( 'genesis_before_header', 'utility_bar' );
-/**
-* Add utility bar above header.
-*
-* @author Carrie Dils
-* @copyright Copyright (c) 2013, Carrie Dils
-* @license GPL-2.0+
-*/
-function utility_bar() {
- echo '<div class="utility-bar"><div class="wrap">';
- genesis_widget_area( 'utility-bar-left', array(
- 'before' => '<div class="utility-bar-left">',
- 'after' => '</div>',
- ) );
- genesis_widget_area( 'utility-bar-right', array(
- 'before' => '<div class="utility-bar-right">',
- 'after' => '</div>',
- ) );
- echo '</div></div>';
+
+add_action( 'genesis_before_header', 'add_widget_before_header' );
+function add_widget_before_header() {
+
+	if ( is_active_sidebar('before-header') ) {
+
+		genesis_widget_area( 'before-header', array(
+			'before' => '<div class="before-header-widget" class="widget-area">',
+			'after'	 => '</div>',
+		) );
+
+    }
+
 }
+
+genesis_register_sidebar( array(
+	'id'          => 'before-footer',
+	'name'        => __( 'Flexible Footer Widgets' ),
+) );
+
+add_action( 'genesis_before_footer', 'css_flexible_widgets', 12 );
+
+function css_flexible_widgets() {
+
+	if ( is_active_sidebar( 'before-footer' ) ) {
+	
+		genesis_widget_area( 'before-footer', array(
+		'before' => '<div class="before-footer widget-area">',
+		'after'  => '</div>',
+	) );
+}}
