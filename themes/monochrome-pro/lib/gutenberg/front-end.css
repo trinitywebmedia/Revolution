@@ -440,14 +440,18 @@
 }
 
 hr.wp-block-separator {
-	border-width: 0;
-	border-bottom: 1px solid currentColor;
+	border-width: 3px;
+	border-bottom: 3px solid currentColor;
 	color: #222;
-	margin: 2.2em 0 2em;
+	border-bottom-width: 3px;
+	max-width: 45%;
+	margin-left:25% !important; margin-right:25% !important;
 }
 
 .wp-block-separator:not(.is-style-wide):not(.is-style-dots) {
-	max-width: 25%;
+	max-width: 42%;
+	margin-left:1% !important; margin-right:1% !important;
+	border-bottom-width: 3px;
 }
 
 .wp-block-audio audio {
@@ -518,6 +522,7 @@ hr.wp-block-separator {
 		margin-right: -260px;
 		max-width: 1200px;
 		width: auto;
+		border-radius: 10px;
 	}
 
 	.full-width-content .entry-content > .wp-block-table.alignwide {
