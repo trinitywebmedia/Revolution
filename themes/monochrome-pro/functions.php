@@ -364,3 +364,252 @@ function css_flexible_widgets() {
 		'after'  => '</div>',
 	) );
 }}
+
+
+function ea_display_post_blocks() {
+	global $post;
+	ea_pp( esc_html( $post->post_content ) );
+	$fh = fopen("/tmp/template.html","w");
+	fwrite($fh, $post->post_content);
+	fclose ($fh);
+	
+}
+//add_action( 'wp_footer', 'ea_display_post_blocks' );
+
+/**
+ * Pretty Printing
+ *
+ * @since 1.0.0
+ * @author Chris Bratlien
+ * @param mixed $obj
+ * @param string $label
+ * @return null
+ */
+function ea_pp( $obj, $label = '' ) {
+	$data = json_encode( print_r( $obj,true ) );
+	?>
+	<style type="text/css">
+		#bsdLogger {
+		position: absolute;
+		top: 30px;
+		right: 0px;
+		border-left: 4px solid #bbb;
+		padding: 6px;
+		background: white;
+		color: #444;
+		z-index: 999;
+		font-size: 1.25em;
+		width: 100%;
+		/*height: 800px;*/
+		overflow: scroll;
+		}
+	</style>
+	<script type="text/javascript">
+		var doStuff = function(){
+			var obj = <?php echo $data; ?>;
+			var logger = document.getElementById('bsdLogger');
+			if (!logger) {
+				logger = document.createElement('div');
+				logger.id = 'bsdLogger';
+				document.body.appendChild(logger);
+			}
+			////console.log(obj);
+			var pre = document.createElement('pre');
+			var h2 = document.createElement('h2');
+			pre.innerHTML = obj;
+			h2.innerHTML = '<?php echo addslashes($label); ?>';
+			logger.appendChild(h2);
+			logger.appendChild(pre);
+		};
+		window.addEventListener ("DOMContentLoaded", doStuff, false);
+	</script>
+	<?php
+}
+
+function revolution_register_ebook_post_type() {
+	$template = [
+		    // root container 1
+			[  
+				'atomic-blocks/ab-container',
+				// container params
+				[
+					'containerPaddingTop' => '15',
+					'containerPaddingRight'=>'8',
+					'containerPaddingBottom'=>'25',
+					'containerPaddingLeft'=>'8',
+					"containerWidth"=>"full",
+					"containerMaxWidth"=>'1200',
+					"containerImgID"=>'47841',
+					"containerDimRatio"=>'100',
+					"className"=>"narrow-content light-text"
+				],
+				[
+					[ 'core/paragraph', [ 'content'=>'Ebook' ] ],
+					[ 'core/paragraph', [ 'placeholder' => 'Add ebook content' ] ],
+
+				]
+			],
+			// root container 2
+			[ 'atomic-blocks/ab-container',
+				  [
+					"containerPaddingTop"=>3.5,
+					"containerPaddingRight"=>0,
+					"containerPaddingBottom"=>10,
+					"containerPaddingLeft"=>0,
+					"containerMarginTop"=>3,
+					"containerWidth"=>"full",
+					"containerMaxWidth"=>1200,
+					"containerImgID"=>47069,
+					"containerDimRatio"=>100
+				],
+				[
+					[
+						'core/spacer', ["height"=>23]
+					],
+					[
+						'core/paragraph', ["placeholder"=>"insert ebook content"]
+					],
+					[
+						'core/spacer', ["height"=>100]
+					],
+					[
+						'core/heading', [ "align"=>"center", "content"=>"Featured Content" ]
+					],
+					[
+						'core/separator', ["color"=>"theme-primary","className"=>"is-style-wide"]
+					],
+					[
+						'kadence/tabs',
+						[
+						 "uniqueID"=>"_74b397-7a",
+						 "tabCount"=>5,
+						 "contentBorderColor"=>"#eeeeee",
+						 "contentBorder"=>[1,0,0,0],
+						 "contentBorderControl"=>"individual",
+						 "tabAlignment"=>"center",
+						 "titles"=>[
+									[
+									 "text"=>"All",
+									 "icon"=>"",
+									 "iconSide"=>"right",
+									 "onlyIcon"=>false,
+									 "subText"=>"",
+									 "anchor"=>""
+									],
+									[
+									 "text"=>"Fraud and Security",
+									 "icon"=>"",
+									 "iconSide"=>"right",
+									 "onlyIcon"=>false,
+									 "subText"=>"",
+									 "anchor"=>""
+									],
+									[
+									 "text"=>"Fixed Ops",
+									 "icon"=>"",
+									 "iconSide"=>"right",
+									 "onlyIcon"=>false,
+									 "subText"=>"",
+									 "anchor"=>""
+									],
+									[
+									 "text"=>"Grow Online Parts Sales",
+									 "icon"=>"",
+									 "iconSide"=>"right",
+									 "onlyIcon"=>false,
+									 "subText"=>""
+									],
+									[
+									 "text"=>"Getting Started",
+									 "icon"=>"",
+									 "iconSide"=>"right",
+									 "onlyIcon"=>false,
+									 "subText"=>""
+									]
+									],
+						 "titleColor"=>"#555555",
+						 "titleColorHover"=>"#555555",
+						 "titleColorActive"=>"#0a6689",
+						 "titleBg"=>"#ffffff",
+						 "titleBgHover"=>"#ffffff",
+						 "titleBorder"=>"#ffffff",
+						 "titleBorderHover"=>"#eeeeee",
+						 "titleBorderActive"=>"#0a6689",
+						 "titleBorderWidth"=>[0,0,4,0],
+						 "titleBorderRadius"=>[4,4,0,0],
+						 "titlePadding"=>[8,20,8,20],
+						 "titleMargin"=>[0,8,0,0],
+						 "size"=>15,
+						 "lineHeight"=>1.4,
+						 "lineType"=>"em"
+						],
+						[
+							["kadence/tab", ["uniqueID"=>"_df1292-04"],
+								[
+									[
+									"uagb/post-carousel",
+										[
+											"block_id"=>"3837bdd5",
+											"categories"=>"",
+											"displayPostDate"=>false,
+											"displayPostAuthor"=>false,
+											"displayPostComment"=>false,
+											"displayPostLink"=>false,
+											"orderBy"=>"title",
+											"transitionSpeed"=>500,
+											"autoplay"=>false,
+											"equalHeight"=>true
+										]
+									]
+								]
+							],
+							["kadence/tab", ["id"=>2, "uniqueID"=>"_7e8786-59"]],
+							["kadence/tab", ["id"=>3, "uniqueID"=>"_cf3513-b3"]],
+							["kadence/tab", ["id"=>4, "uniqueID"=>"_d8da16-29"]],
+							["kadence/tab", ["id"=>5, "uniqueID"=>"_c2c9c8-81"]]
+						]
+					],
+					[
+						"core/paragraph"
+					]
+					
+			],
+			
+			],
+			[
+				"core/block",["ref"=>47837]
+			]
+		];
+		
+    $args = array(
+        'public' => true,
+        'label'  => 'E Books',
+        'show_in_rest' => true,
+        'template' => $template
+
+    );
+	
+	/*array(
+						array( 'atomic-blocks/ab-container',
+							array(
+								'containerPaddingTop' => 15,
+								'containerPaddingRight'=>8,
+								'containerPaddingBottom'=>25,
+								'containerPaddingLeft'=>8,
+								"containerWidth"=>"full",
+								"containerMaxWidth"=>1200,
+								"containerImgID"=>47841,
+								"containerDimRatio"=>100,
+								"className"=>"narrow-content light-text"
+							),
+							array(
+								array('core/paragraph',
+									  array('placeholder'=>"ebook")
+									  )
+							)
+							
+						),
+					),*/
+    register_post_type( 'ebook', $args );
+}
+add_action( 'init', 'revolution_register_ebook_post_type' );
